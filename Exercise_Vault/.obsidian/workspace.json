@@ -1,0 +1,156 @@
+{
+  "main": {
+    "id": "57f3eef4ed474878",
+    "type": "split",
+    "children": [
+      {
+        "id": "5fef4c46283ddad3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "208c69b07477ed31",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Exercise 1 - Nico Bachmann.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e33c3f3b64bb3f8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "3ff5cd22788e9855",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "257461c2ded42da6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "8166cc01f4bfe94b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a01dcead523ffe92",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "0c67ec884fc46008",
+    "type": "split",
+    "children": [
+      {
+        "id": "e2b1481025259b47",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e8b30cfb2b3e7184",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Exercise 1 - Nico Bachmann.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "33bb03c9880d52a5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Exercise 1 - Nico Bachmann.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f452abc6f1cf81d6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "3953233a5c9692b0",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Exercise 1 - Nico Bachmann.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "208c69b07477ed31",
+  "lastOpenFiles": [
+    "e1.md",
+    "Exercise 1 - Nico Bachmann.md",
+    "e1.html"
+  ]
+}
