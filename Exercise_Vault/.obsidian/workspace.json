@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5fef4c46283ddad3",
+        "id": "173083af6200ae74",
         "type": "tabs",
         "children": [
           {
-            "id": "208c69b07477ed31",
+            "id": "987becfa8e3e5027",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -147,10 +147,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "208c69b07477ed31",
+  "active": "987becfa8e3e5027",
   "lastOpenFiles": [
-    "e1.md",
     "Exercise 1 - Nico Bachmann.md",
+    "e1.md",
     "e1.html"
   ]
 }

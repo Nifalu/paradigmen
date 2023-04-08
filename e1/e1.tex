@@ -1,0 +1,219 @@
+
+%% GENERAL DEFINITIONS
+\documentclass{article} %% Determines the general format.
+\usepackage{a4wide} %% paper size: A4.
+\usepackage[utf8]{inputenc} %% If problem with special characters: "latin1"
+\usepackage[T1]{fontenc} %% Format of the resulting PDF file.
+\usepackage{fancyhdr} %% Package to create a header on each page.
+\usepackage{lastpage} %% Used for "Page X of Y" in the header.
+\usepackage{enumerate} %% Used to change the style of enumerations (see below).
+\usepackage{amssymb} %% Definitions for math symbols.
+\usepackage{amsmath} %% Definitions for math symbols.
+\usepackage{amsthm} %% === Definition for proof paragraph ===
+\usepackage{color}
+\usepackage{comment}
+
+%% NICE ADDITIONS
+% \usepackage{parskip} %% uses empty lines for paragraphs instead of \
+% \usepackage{MnSymbol,wasysym} % smileys: \smiley{} \frownie{} \blacksmiley{}
+
+%% Remove initial indentation of first line of paragraphs
+\setlength{\parindent}{0pt}
+
+%% GRAPHS
+\usepackage{tikz}
+\usetikzlibrary{automata}
+%% Tikz library for nicer arrow heads
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc} 
+
+%% CODE LISTINGS
+\usepackage{listings}
+
+\lstset{
+    breaklines=true,
+    inputpath=code, 
+    language=C++, 
+    basicstyle=\fontencoding{T1}\small\fontfamily{lmtt}\fontseries{m}\selectfont, 
+    keepspaces=true, 
+    numbers=left, 
+    stepnumber=1, 
+    frame=shadowbox, 
+    rulesepcolor=\color{gray}, 
+    commentstyle=\color{dkgreen}, 
+    keywordstyle=\color{blue},
+    showstringspaces=false}
+
+%% DEFINITIONS
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\newtheorem{statement}{Statement}
+
+%% PATHS
+\graphicspath{{images/}} %% adds graphics path
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Left side of header
+\lhead{\course\\\semester\\Exercise Sheet \homeworkNumber}
+%% Right side of header
+\rhead{\authorname\\Page \thepage\ of \pageref{LastPage}}
+%% Height of header
+\usepackage[headheight=36pt]{geometry}
+%% Page style that uses the header
+\pagestyle{fancy}
+%% add title to header
+%% \chead{\huge{\textbf{Blatt \homeworkNumber}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METADATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\authorname}{Nico Bachmann} % TODO: add your names
+\newcommand{\semester}{Spring Term 2023}
+\newcommand{\course}{Paradigmen und Konzepte von Programmiersprachen}
+\newcommand{\homeworkNumber}{1} % TODO: add current sheet nr
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.1}
+\begin{enumerate}[1.]
+\item \verb|int main(int argc, char** argv) {}|\\
+Passes command line parameters to the main method. 'argc' stands for 'argument count' and specifies the number of parameters as an integer. If two arguments are passed, the argument count = 3.
+
+'argv' stands for 'argument vector' and contains the passed contents in an "array". Since strings are also represented as arrays, it is so to speak an array of strings or an array of an array. Therefore the double pointer.
+
+An alternative way to write this line would be: \verb|int main(int argc, char* argv[]) {}|\\\\
+
+
+\item \verb|float foo(int x){}|\\
+Code compiles with the warning that no value is returned in a non-void function. It should return a float number but it doesn't.
+
+Also if this line of code is meant to define 'foo' it should do something in the function body and have a return value.
+
+And if this line of code is meant to declare 'foo', then the curly brackets are not needed.
+
+As it is now. This function does nothing but prompts a warning.
+
+
+\item \verb|int foo(double result=10.5){return result;}|\\
+Code compiles just fine. However it's poorly written or misleading because the return type is declared as int but then a double is casted to an int. \\
+So given 3.5 it will only return 3. 'foo' also has 10.5 set as standard value for the result. so when 'foo' is called without any parameter, it will return 10. Which is the integer part of 10.5.
+
+
+\item \verb|int foo(){return int z;}|\\
+This does not compile. 'int z' is only a declaration. At this point 'z' is not defined and can therefore not be returned.
+
+
+\item \verb|typdef struct{int x,y,z;}a;|\\
+This does not compile because it has a typo. Actually the same typo as on slide 85 from the C++ Einführung.\\
+If written correctly: \verb|typedef struct{int x,y,z;}a;|\\ it would create an alias 'a' for the given struct and we could write something like this:
+\lstinputlisting{q1e_solved.cpp}
+
+\end{enumerate}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.2}
+\begin{enumerate}[(a)]
+    \item There are 4 types of mistakes:
+    \begin{enumerate}[1.]
+        \item "wrong language"\\
+        In c++ the syntax is \verb|#include| and not \verb|#import| as it is in java and others.
+        
+        \item "mismatched return values"\\
+        Return value of \verb|calculate(..);| is declared as float but defined as double. Make both double.\\
+        Return value of \verb|construct_bmi(..)| is declared as BMI but not defined at all. Make both BMI. 
+        
+        \item "no namespace"\\
+        \verb|cout| or \verb|cin| are unknown. Either write \verb|std::cout| and \verb|std::cin| or add the entire namespace at the beginning with \verb|using namespace std|.
+        
+        \item \verb|bmi.cpp| and \verb|main.cpp| both include \verb|bmi.h|-functions and those need to be called
+        with \\ \verb|bmi::construct_bmi(..)| and \verb|bmi::calculate(..)|. (or set a new namespace)
+    \end{enumerate}
+    \item The terminal commands to compile \verb|main.cpp, bmi.cpp, bmi.h| are: \\
+    \verb|g++ -c main.cpp| to compile the main file but not link it (-c).\\
+    \verb|g++ -c bmi.cpp| to compile the bmi file but also not link it (-c).\\
+    \verb|g++ main.o bmi.o -o bmiprogram| to link the first two files together and create a executable file called "bmiprogram". It's important that the file with the main() function is listed first in this command!
+\end{enumerate}
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.3}
+\textbf{q3.cpp}
+\lstset{language=C++}
+\lstinputlisting{q3.cpp}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.4}
+\textbf{q4.cpp}
+\lstset{language=C++}
+\lstinputlisting{q4.cpp}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.5}
+\textbf{q5.cpp}
+\lstset{language=C++}
+\lstinputlisting{q5.cpp}
+(c) A union is basically a struct with the exception that all members start at the same memory address. So unlike with structs, in a union usually only one member is used.
+A usecase could be to have a tree structure where each knot can be a double or an int. However its usually never both.
+Because all memebrs start at the same address, if we define multiple members they get overwritten.
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.6}
+\begin{enumerate}[(a)]
+\item
+\textbf{q6a.cpp}
+\lstset{language=C++}
+\lstinputlisting{q6a.cpp}
+The (two) main mistakes are on line 3 and 4. First we're trying to assign an integer to a pointer and then we try to dereference that integer. To fix it, just delete line 3 and directly write \verb|5| on line 4 instead of \verb|*a|.
+Then the runtime error is on line 9 and 10 where a pointer is declared but not initialized. Still we try to dereference that pointer. To fix that, just delete line 10 and define the pointer directly.\\\\
+A working solution looks like this:\\
+\textbf{q6a-solved.cpp}
+\lstset{language=C++}
+\lstinputlisting{q6a-solved.cpp}
+\clearpage
+
+\item
+The function should return a pointer pointing at the beginning of the new array. However we then don't have the length of the new array which makes it cumbersome to work with it. I therefore created a struct that includes both the pointer to the array and the length of the array. So the function \verb|combineReverseEvenWithLength(..)| returns both values at once.\\
+Because the Question explicitly asks for a function that "returns the pointer to the beginning of the new array" I also added an additional function \verb|combineReverseEven(..)|to just return the pointer.\\
+This way I can easily test my implementation with the \verb|combineReverseEvenWithLength(..)| but still offer the requested functionality with the \verb|combineReverseEven(..)| function.
+
+\textbf{q6b.cpp}
+\lstset{language=C++}
+\lstinputlisting{q6b.cpp}
+\clearpage
+
+\item
+This code does not compile. p stores an address which can't be multiplied (line 13) or subtracted (line 14).
+It doesn't make a difference if we write \verb|(p-p-8)| or \verb|(p+(p-8)| as neither subtraction nor addition of two pointers is allowed.\\
+Pointers can be incremented or decremented by integers and can be compared. It also wouldn't make any sense to add, subtract, multiply or divide two pointers as there would be no way to tell what is stored at the resulting address.
+
+\textbf{q6c.cpp}
+\lstset{language=C++}
+\lstinputlisting{q6c.cpp}
+\clearpage
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.7}
+
+As you can see in line 23, the \verb|compare(..)| function receives a function pointer as parameter. The syntax for that is \verb|[return value] (function pointer) (param1, param2, ...)|. Obviously the number of parameters have to match. The \verb|compare(..)| function then does nothing else but call the passed function and return its return value.
+
+\textbf{q7.cpp}
+\lstset{language=C++}
+\lstinputlisting{q7.cpp}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.8}
+\textbf{q8.py}
+\lstset{language=Python}
+\lstinputlisting{q8.py}
+
+\end{document}

@@ -91,9 +91,9 @@ Because all memebrs start at the same address, if we define multiple members the
 ```c++
 #include <iostream>
 
-void foo (int *ptr) { // here a copy instead of a reference to ptr is made.
+void foo (int *ptr) {
 	int *a = 5; // Error: a pointer needs to point to an address. not an integer
-	*ptr = *a; } // We want to rewrite the pointer itself
+	*ptr = *a; } // Here we should write a pointer 
 
 
 int main() {

@@ -7,7 +7,7 @@ int compareDouble(double d1, double d2) {
     return (d1 > d2) ? 1 : -1;
 }
 
-// compares according to the sinus value of the second element in the array.
+// compares according to the sin value of the second element in the array.
 int compare_sin(double* arr1, double* arr2) {
     return compareDouble(sin(arr1[1]), sin(arr2[1]));
 }

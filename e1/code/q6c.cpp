@@ -10,8 +10,8 @@ int main() {
     p = &b;
     *p = a + 5;
     (*p)++;
-    //p *= 2; cannot multiply pointers or addresses
-    cout << a << " " << b << " " << p << " " << /*(p - p - 8)) << */ endl; // cannot substract pointers either.
+    p *= 2; cannot multiply pointers or addresses
+    cout << a << " " << b << " " << p << " " << (p - p - 8)) << endl; // cannot substract pointers either.
     
     return 0;
 }
