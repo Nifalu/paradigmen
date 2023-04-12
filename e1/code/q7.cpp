@@ -14,8 +14,8 @@ int compare_sin(double* arr1, double* arr2) {
 
 // compares according to their respective L1 values.
 int compare_taxicab(double* arr1, double* arr2) {
-    double manh_d1 = sqrt(arr1[0] * arr1[1] * arr2[2]);
-    double manh_d2 = sqrt(arr2[0] * arr2[1] * arr2[2]);
+    double manh_d1 = abs(arr1[0]) + abs(arr1[1]) + abs(arr2[2]);
+    double manh_d2 = abs(arr2[0]) + abs(arr2[1]) + abs(arr3[2]);
     return compareDouble(manh_d1, manh_d2);
 }
 

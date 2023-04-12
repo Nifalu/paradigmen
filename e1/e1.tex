@@ -182,21 +182,34 @@ A working solution looks like this:\\
 \item
 The function should return a pointer pointing at the beginning of the new array. However we then don't have the length of the new array which makes it cumbersome to work with it. I therefore created a struct that includes both the pointer to the array and the length of the array. So the function \verb|combineReverseEvenWithLength(..)| returns both values at once.\\
 Because the Question explicitly asks for a function that "returns the pointer to the beginning of the new array" I also added an additional function \verb|combineReverseEven(..)|to just return the pointer.\\
-This way I can easily test my implementation with the \verb|combineReverseEvenWithLength(..)| but still offer the requested functionality with the \verb|combineReverseEven(..)| function.
+This way I can easily test my implementation with the \verb|combineReverseEvenWithLength(..)| but still offer the requested functionality with the \verb|combineReverseEven(..)| function. \\
+Also there is no longer the need to pass the length of the resulting array in advance!
 
 \textbf{q6b.cpp}
 \lstset{language=C++}
 \lstinputlisting{q6b.cpp}
 \clearpage
 
-\item
-This code does not compile. p stores an address which can't be multiplied (line 13) or subtracted (line 14).
-It doesn't make a difference if we write \verb|(p-p-8)| or \verb|(p+(p-8)| as neither subtraction nor addition of two pointers is allowed.\\
-Pointers can be incremented or decremented by integers and can be compared. It also wouldn't make any sense to add, subtract, multiply or divide two pointers as there would be no way to tell what is stored at the resulting address.
-
+\item Output:\\"address of b" 1284\\460 1292 "address of b" 2576\\\\
+\begin{tabular}{l | l}\\
+code & description\\
+\hline
+\verb|int a = 4;| & initializes an integer variable a with value 4\\
+\verb|int b = a + 6;| & initializes another integer variable with value a + 6 (=10)\\
+\verb|int *p = &a, **q = &p;| & initializes an integer pointer p to the address\\ & of a and an pointer of a pointer q to the address of p.\\
+\verb|*p *= 4 * *&b * **q;| & dereferenced pointer $p$ (value 4) is multiplied with $4$ times the\\ & dereferenced value of the reference of $b$ (value 10) times the \\ & dereferenced value of $q$ (value 4) and then stored in $a$. \\ &
+In short: $a = 4 * 4 * 10 * 4 = 640$ \\
+\verb|p = &b;| & pointer p now points to b instead of a. b still has value 10\\
+\verb|*p = a + 5;| & dereferenced pointer p (int b) is now $a + 5 = 640 + 5 = 645$\\
+\verb|(*p)++;| & dereferenced pointer p (int b) is incremented by 1. b is now 646.\\
+\verb|cout ...| & Print out will look like this: ["address of b" 1284]\\
+\verb|*p *= 2;| & dereferenced pointer p (int b) is multiplied by 2. (646 * 2 = 1292)\\
+\verb|cout ...| & Print out will look like this: [460 1292 "address of b" 2576]\\
+\end{tabular}\\\\
 \textbf{q6c.cpp}
 \lstset{language=C++}
 \lstinputlisting{q6c.cpp}
+
 \clearpage
 
 \end{enumerate}
