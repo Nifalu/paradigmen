@@ -9,6 +9,7 @@ mode = 0 # 0 = p2, 1 = AI
 turn = 0 # 0 = p0, 1 = p1
 chars = ["X", "O"]
 blocked = False
+running = True
 
 
 def nextTurn(i):
@@ -123,6 +124,13 @@ def announce(msg):
     action.config(text=msg)
     print(msg)
 
+def quit():
+    global running
+    root.destroy()
+    running = False
+
+
+
 # ---------------------------------------------------------------
 # Gui starts here
 # ---------------------------------------------------------------
@@ -180,7 +188,7 @@ bchangeMode.grid(row=0, column=1)
 bquit = Button(hbox,
                text="Quit",
                font=("Papyrus", 40),
-               command=root.destroy)
+               command=quit)
 bquit.grid(row=0, column=2)
 # ----------------------------------------------------------------
 hbox.configure(pady=20)
@@ -192,7 +200,7 @@ if __name__ == "__main__":
 
 
     # Allows playing the game in the terminal. (gui still updates)
-    while(True):
+    while(running):
         field.printcurrent()
         msg = input(" ")
         if msg == "mode":
