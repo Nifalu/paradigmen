@@ -1,0 +1,5 @@
+
+INFO:
+
+All code in this directory is written by myself. However i used the JAVA code from "https://www.geeksforgeeks.org/insertion-in-red-black-tree/" as example and tried to write the same in C++ 
+
