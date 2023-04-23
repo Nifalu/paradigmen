@@ -34,7 +34,7 @@ Node::~Node()
 
 // GETTERS AND SETTERS -----------
 
-int Node::getKey()
+int Node::getKey() const
 {
     return this->key;
 }
@@ -54,17 +54,17 @@ void Node::setBlack()
     this->color = 0;
 }
 
-bool Node::isBlack()
+bool Node::isBlack() const
 {
     return (this->color == 0);
 }
 
-bool Node::isRed()
+bool Node::isRed() const
 {
     return (this->color == 1);
 }
 
-std::string Node::getColor()
+std::string Node::getColor() const
 {
     if (this->color == 1) {
         return "R";
@@ -73,7 +73,7 @@ std::string Node::getColor()
     }
 }
 
-std::string Node::getValue()
+std::string Node::getValue() const
 {
     return this->value;
 }
@@ -83,17 +83,17 @@ void Node::setValue(string s)
     this->value = s;
 }
 
-Node *Node::getParent()
+Node *Node::getParent() const
 {
     return this->parent_ptr;
 }
 
-Node *Node::getLeftChild()
+Node *Node::getLeftChild() const
 {
     return this->lchild_ptr;
 }
 
-Node *Node::getRightChild()
+Node *Node::getRightChild() const
 {
     return this->rchild_ptr;
 }

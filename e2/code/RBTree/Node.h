@@ -14,21 +14,21 @@ class Node
         Node(int key, string value);
 
 
-        int getKey();
+        int getKey() const;
         void setKey(int k);
-        string getValue();
+        string getValue() const;
         void setValue(string s);
-        Node* getParent();
-        Node* getLeftChild();
-        Node* getRightChild();
+        Node* getParent() const;
+        Node* getLeftChild() const;
+        Node* getRightChild() const;
         void setParent(Node* n);
         void setLeftChild(Node* n);
         void setRightChild(Node* n);
-        bool isRed();
-        bool isBlack();
+        bool isRed() const;
+        bool isBlack() const;
         void setRed();
         void setBlack();
-        string getColor();
+        string getColor() const;
 
 
         ~Node();

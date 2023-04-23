@@ -51,7 +51,7 @@ void RBTree::insert(int* key, string* val)
     }
 }
 
-string RBTree::search(int key)
+string RBTree::search(int key) const
 {
     Node* n = searchHelper(this->root, key);
     if (n == nullptr)

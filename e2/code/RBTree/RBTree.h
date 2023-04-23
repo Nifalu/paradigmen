@@ -14,7 +14,7 @@ class RBTree
         ~RBTree();
         
         void insert(int* key, string* val);
-        string search(int key);
+        string search(int key) const;
         void printTree();
     
     private:
