@@ -1,4 +1,3 @@
-import sys
 import random
 import re
 from tkinter import Tk, Label, Frame, Button
@@ -10,6 +9,7 @@ turn = 0 # 0 = p0, 1 = p1
 chars = ["X", "O"]
 blocked = False
 running = True
+numpad = [6, 7, 8, 3, 4, 5, 0, 1, 2]
 
 
 def nextTurn(i):
@@ -111,7 +111,7 @@ def changeMode():
 # Play the game with keyboard input.
 def keyboardInput(event):
     try:
-        nextTurn(int(event.char)-1)
+        nextTurn(numpad[int(event.char)-1])
     except:
         print("invalid input", event.char)
 # ------------------------------------------------------------
