@@ -3,10 +3,20 @@
 
 using namespace std;
 
+/*
+The Node holds the given information (key, value and color) 
+and stores pointers to children and parent nodes.
+
+It has getters and setters to access and manage its data.
+*/
+
+
+// Data stored in the node
 int key;
 string value;
 int color;
 
+// Node neighbors 
 Node* parent_ptr;
 Node* lchild_ptr;
 Node* rchild_ptr;

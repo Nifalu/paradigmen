@@ -7,10 +7,6 @@ using namespace std;
 class Node 
 {
     public:
-        /// @brief 
-        /// @param key 
-        /// @param value 
-        /// @param parent 
         Node(int key, string value);
 
 
@@ -30,9 +26,7 @@ class Node
         void setBlack();
         string getColor() const;
 
-
         ~Node();
-
 
     private:
         int key;
