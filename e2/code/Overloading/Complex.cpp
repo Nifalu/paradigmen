@@ -5,6 +5,12 @@ double imag;
 
 using namespace std;
 
+
+/*
+The Complex Object provides methods for math operations with complex numbers.
+In addition it also overloads the operators for those operations.
+*/
+
 class Complex
 {
     public:
