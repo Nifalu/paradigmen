@@ -82,7 +82,7 @@ Complex operator!(Complex a)
     return Complex(a.real, -a.imag);
 }
 
-ostream& operator<<(ostream& os, Complex a) 
+ostream& operator<<(ostream& os, const Complex& a) 
 {
     if (a.imag >= 0)
     {
