@@ -8,7 +8,7 @@ string color;
 
 void Car::printInfo()
 {
-    cout << "---- CAR INFO ---" << endl;
+    cout << "--- CAR INFO ---" << endl;
     cout << "Driver: " << this->driverLastName << endl;
     cout << "Plate: " << this->licensePlate << endl;
     cout << "Color: " << this->color <<  endl;
