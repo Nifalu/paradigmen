@@ -1,0 +1,194 @@
+
+%% GENERAL DEFINITIONS
+\documentclass{article} %% Determines the general format.
+\usepackage{a4wide} %% paper size: A4.
+\usepackage[utf8]{inputenc} %% If problem with special characters: "latin1"
+\usepackage[T1]{fontenc} %% Format of the resulting PDF file.
+\usepackage{fancyhdr} %% Package to create a header on each page.
+\usepackage{lastpage} %% Used for "Page X of Y" in the header.
+\usepackage{enumerate} %% Used to change the style of enumerations (see below).
+\usepackage{amssymb} %% Definitions for math symbols.
+\usepackage{amsmath} %% Definitions for math symbols.
+\usepackage{amsthm} %% === Definition for proof paragraph ===
+\usepackage{color}
+\usepackage{comment}
+\usepackage{hyperref}
+
+%% NICE ADDITIONS
+% \usepackage{parskip} %% uses empty lines for paragraphs instead of \
+% \usepackage{MnSymbol,wasysym} % smileys: \smiley{} \frownie{} \blacksmiley{}
+
+%% Remove initial indentation of first line of paragraphs
+\setlength{\parindent}{0pt}
+
+%% GRAPHS
+\usepackage{tikz}
+\usetikzlibrary{automata}
+%% Tikz library for nicer arrow heads
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc} 
+
+%% CODE LISTINGS
+\usepackage{listings}
+
+\lstset{
+    breaklines=true,
+    inputpath=code, 
+    language=C++, 
+    basicstyle=\fontencoding{T1}\small\fontfamily{lmtt}\fontseries{m}\selectfont, 
+    keepspaces=true, 
+    numbers=left, 
+    stepnumber=1, 
+    frame=shadowbox, 
+    rulesepcolor=\color{gray}, 
+    commentstyle=\color{dkgreen}, 
+    keywordstyle=\color{blue},
+    showstringspaces=false}
+
+%% DEFINITIONS
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\newtheorem{statement}{Statement}
+
+%% PATHS
+\graphicspath{{images/}} %% adds graphics path
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Left side of header
+\lhead{\course\\\semester\\Exercise Sheet \homeworkNumber}
+%% Right side of header
+\rhead{\authorname\\Page \thepage\ of \pageref{LastPage}}
+%% Height of header
+\usepackage[headheight=36pt]{geometry}
+%% Page style that uses the header
+\pagestyle{fancy}
+%% add title to header
+%% \chead{\huge{\textbf{Blatt \homeworkNumber}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METADATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\authorname}{Nico Bachmann} % TODO: add your names
+\newcommand{\semester}{Spring Term 2023}
+\newcommand{\course}{Paradigmen und Konzepte von Programmiersprachen}
+\newcommand{\homeworkNumber}{2} % TODO: add current sheet nr
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.1 Set Implementation, Constructor, Destructor}
+Files for this Question:\\
+\textbf{RBTree/Node.cpp}\\
+\textbf{RBTree/RBTree.cpp}\\
+\textbf{RBTree/Insert.cpp}\\
+\textbf{RBTree/Search.cpp}\\
+\textbf{RBTree/PrintTree.cpp}\\
+(and the corresponding .h files)\\
+
+To compile (on MacOS):\\
+\verb|g++ RBTree.cpp Node.cpp Insert.cpp Search.cpp PrintTree.cpp -o RBTree|\\
+
+Output:\\
+It should print the tree three times (constructed with the three different constructors) and print out the search result of 4052, 4132 and 5050.
+
+The tree is printed from left to right. So the root node is the leftmost node while the leaves are on the right side. It also prints B or R at every node indicating its color.\\
+
+Sources / Credits:\\
+All code is written by myself. I used this website: 
+\href{https://www.geeksforgeeks.org/insertion-in-red-black-tree/}{geeksforgeeks.org/insertion-in-red-black-tree}
+as basis for my implementation and rewrote the given Java code in C++.
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.2 Classes and Inheritance}
+Files for this Question:\\
+\textbf{cars/Car.cpp}\\
+\textbf{cars/Vehicle.cpp}\\
+(and the corresponding .h files)\\
+
+To compile (on MacOS):\\
+\verb|g++ Car.cpp Vehicle.cpp -o car|\\
+
+Output of part a-d:\\
+\verb|--- CAR INFO ---|\\
+\verb|Driver: Torvalds|\\
+\verb|Plate: Mr. Linux, DAD OF 3, KING OF GEEKS|\\
+\verb|Color: Yellow|\\
+\verb|Producer: Mercedes Benz|\\
+\verb|Type: SLK|\\
+\verb|-----------------|\\
+
+Output of part e:\\
+\verb|C1 - f2|\\
+\verb|C1 - f1|\\
+\verb|*********|\qquad --> \qquad \verb|aa| is of Type \verb|C1*|, so \verb|aa->f1()| calls \verb|C1::f1()| which calls \verb|C1::f2()|\\
+
+\verb|C2 - f2|\\
+\verb|C2 - f1|\\
+\verb|*********|\qquad --> \qquad \verb|bb| is of Type \verb|C2*|, so \verb|bb->f1()| calls \verb|C2::f1()| which calls \verb|C2::f2()|\\
+
+\verb|C2 - f2|\\
+\verb|*********|\qquad --> \qquad \verb|bb| is of Type \verb|C2*|, so \verb|bb->f2()| calls \verb|C2::f2()|\\
+
+\verb|C2 - f2|\\
+\verb|*********|\qquad --> \qquad \verb|ab| is of Type \verb|C1*| but points to an object of \verb|C2*|, so \verb|ab->f2()| calls \verb|C1::f2()| but because that is a virtual function it calls the correct implementation based on the dynamic object type which is \verb|C2| so in the end \verb|C2::f2()| is called. (static type is C1*, but dynamic type is C2*)\\
+
+\verb|C2 - f2|\\
+\verb|C2 - f1|\\
+\verb|C2 - f3|\\
+\verb|*********|\qquad --> \qquad \verb|bb| is of Type \verb|C2*| so \verb|bb->f3()| calls \verb|C2::f3()| which calls \verb|C2::f1()| which inside calls \verb|C2::f1()|.\\
+
+\verb|C2 - f2|\\
+\verb|C3 - f1|
+\qquad --> \qquad \verb|ac| is of Type \verb|C1*| but points to an object of \verb|C3|. So \verb|ac->f1()| calls \verb|C3::f1()| because its dynamic type is C3. \verb|C3::f1()| then calls \verb|f2()| which is not implemented in \verb|C3| and because the static type is \verb|C1|, it goes up one step and uses the implementation of its parent: \verb|C2::f2()|
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.3 Operator Overloading}
+Files for this Question:\\
+\textbf{Overloading/Complex.cpp}\\
+(and the corresponding .h file)\\
+
+I am aware the it is technically possible to divide by 0 in this implementation. To do that however, the user needs to do the error of actively trying to divide by 0. The program itself does not crash and correctly returns NaN when asked to divide by 0 which is the important part!
+%\lstset{language=C++}
+%\lstinputlisting{Overloading/Complex.cpp}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.4 Templates}
+Files for this Question:\\
+\textbf{Templates/DynamicArray.h}\\
+\textbf{Templates/main.cpp}\\
+
+The Code for the Template DynamicArray is only generated when its instantiated for a specific type. So the compiler needs to have access to the full definition of the Template whenever he needs to instantiate it for some type. Therefore the full definition has to either be in the .h already, or the .h file needs to \verb|#include| the corresponding .cpp file at the end. Here I went with the first option.\\
+
+To compile:\\
+\verb|g++ main.cpp -o main|\\
+
+Read comments in the code for more details on the functionality of the DynamicArray.
+%\lstset{language=C++}
+%\lstinputlisting{q4.cpp}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise 5 and 6 Tic Tac Toe, The Ultimate Game}
+Files for this Question:\\
+\textbf{tictactoe/tictactoe.py}\\
+
+Run: \verb|python3 tictactoe.py|\\
+
+The Game is self-explanatory in the GUI. It is still possible to play in the terminal if you wish.\\
+
+Commands for the commandline:\\
+\verb|quit| \qquad -> \qquad Quit the game.\\
+\verb|mode| \qquad -> \qquad Switch between AI and 2 Player mode.\\
+\verb|restart| \qquad -> \qquad Restart the game.\\
+
+\verb|[1-9]| \qquad -> \qquad Mark the field. 1 is bottom right, 9 is top left.\\
+
+
+\end{document}
