@@ -1,0 +1,123 @@
+
+%% GENERAL DEFINITIONS
+\documentclass{article} %% Determines the general format.
+\usepackage{a4wide} %% paper size: A4.
+\usepackage[utf8]{inputenc} %% If problem with special characters: "latin1"
+\usepackage[T1]{fontenc} %% Format of the resulting PDF file.
+\usepackage{fancyhdr} %% Package to create a header on each page.
+\usepackage{lastpage} %% Used for "Page X of Y" in the header.
+\usepackage{enumerate} %% Used to change the style of enumerations (see below).
+\usepackage{amssymb} %% Definitions for math symbols.
+\usepackage{amsmath} %% Definitions for math symbols.
+\usepackage{amsthm} %% === Definition for proof paragraph ===
+\usepackage{color}
+\usepackage{comment}
+\usepackage{hyperref}
+
+%% NICE ADDITIONS
+% \usepackage{parskip} %% uses empty lines for paragraphs instead of \
+% \usepackage{MnSymbol,wasysym} % smileys: \smiley{} \frownie{} \blacksmiley{}
+
+%% Remove initial indentation of first line of paragraphs
+\setlength{\parindent}{0pt}
+
+%% GRAPHS
+\usepackage{tikz}
+\usetikzlibrary{automata}
+%% Tikz library for nicer arrow heads
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc} 
+
+%% CODE LISTINGS
+\usepackage{listings}
+
+\lstset{
+    breaklines=true,
+    inputpath=code, 
+    language=C++, 
+    basicstyle=\fontencoding{T1}\small\fontfamily{lmtt}\fontseries{m}\selectfont, 
+    keepspaces=true, 
+    numbers=left, 
+    stepnumber=1, 
+    frame=shadowbox, 
+    rulesepcolor=\color{gray}, 
+    commentstyle=\color{dkgreen}, 
+    keywordstyle=\color{blue},
+    showstringspaces=false}
+
+%% DEFINITIONS
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\newtheorem{statement}{Statement}
+
+%% PATHS
+\graphicspath{{images/}} %% adds graphics path
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Left side of header
+\lhead{\course\\\semester\\Exercise Sheet \homeworkNumber}
+%% Right side of header
+\rhead{\authorname\\Page \thepage\ of \pageref{LastPage}}
+%% Height of header
+\usepackage[headheight=36pt]{geometry}
+%% Page style that uses the header
+\pagestyle{fancy}
+%% add title to header
+%% \chead{\huge{\textbf{Blatt \homeworkNumber}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METADATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\authorname}{Nico Bachmann} % TODO: add your names
+\newcommand{\semester}{Spring Term 2023}
+\newcommand{\course}{Paradigmen und Konzepte von Programmiersprachen}
+\newcommand{\homeworkNumber}{3} % TODO: add current sheet nr
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.1 Bite-sized Haskell Tasks}
+\begin{enumerate}[a)]
+\item \verb|Swap the values of the first and last element in a list|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={2-5}, firstnumber=2]{main.hs}
+
+First check for the case that the list is empty, if so, return it. Then check the case if the list contains only a single item, if so, again, return it. Only in the third case, when the list contains 2 or more elements, swap the first and last.\\
+\verb|last xs| = last element of xs\\
+\verb|tail (init xs)| = all elements of xs without the first and last\\
+\verb|head xs| = first element of xs \\
+
+\item \verb|Return, as a Boolean, whether two consecutive elements in a list are the same|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={8-11}, firstnumber=8]{main.hs}
+
+Same principle as in a). In the third case however we check if the first two elements are equal and if not, make a recursive call with the second and the third item. So we iterate recursively over the list until we find two equal elements next to ex
+\end{enumerate}
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.2 Classes and Inheritance}
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.3 Operator Overloading}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.4 Templates}
+
+%\lstset{language=C++}
+%\lstinputlisting{q4.cpp}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise 5 and 6 Tic Tac Toe, The Ultimate Game}
+
+
+\end{document}
