@@ -78,6 +78,15 @@
 
 
 \begin{document}
+
+Note:
+The code itself is not commented very well as I found that most functions are rather simple and short and the entire file would be rather unreadable with many comments. I therefore chose to instead write more detailed comments here in the PDF.
+
+The main function only tests the requested functions from question 1 and 5. However you can easily check all functions in the ghci environment.
+
+Even if not requested, all functions are in the same file. (main.hs)
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Exercise \homeworkNumber.1 Bite-sized Haskell Tasks}
 \begin{enumerate}[a)]
@@ -94,30 +103,156 @@ First check for the case that the list is empty, if so, return it. Then check th
 \lstset{language=Haskell}
 \lstinputlisting[linerange={8-11}, firstnumber=8]{main.hs}
 
-Same principle as in a). In the third case however we check if the first two elements are equal and if not, make a recursive call with the second and the third item. So we iterate recursively over the list until we find two equal elements next to ex
+Same principle as in a). In the third case however we check if the first two elements are equal and if not, make a recursive call with the second and the third item. So we iterate recursively over the list until we find two equal elements next to each other. If so we return true. If not we will at some point end up with list with only one element and return false in the second case. \\
+
+\item \verb|Return a list containing all divisors of a given positive integer.|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={14-15}, firstnumber=14]{main.hs}
+
+We use a generator to generate a list with numbers from 1 to n where n is our given Integer. We then constrain the generator to only generate x when n mod x equals 0. \\
+\clearpage
+\item \verb|Remove all odd numbers from a list.|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={18-19}, firstnumber=18]{main.hs}
+
+Using the in-built filter function with the also in-built even function. We can easily filter our list for only even ones. which is the same as dropping the odd ones.  \\
+
+\item \verb|Calculate the mean of the even numbers in a list|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={22-23}, firstnumber=22]{main.hs}
+
+Divide the sum of all even numbers by the number of even numbers. We make use of the filter function just as in 1d) and also use the length function to get the number of even numbers. \\
+
+\item \verb|Generate a list of tuples (n, s) where 0 <= n <= 30 and where s = n2|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={26-27}, firstnumber=26]{main.hs}
+
+Use a list generator from 1 to 30. Code is trivial. \\
+
+\item \verb|Take two positive integers and return a list containing their shared prime factors.|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={30-31}, firstnumber=30]{main.hs}
+
+The y generator generates numbers from two to the larger of the two inputs. This generator then has three constraints:
+\begin{enumerate}[-]
+\item y needs to be a divider of the first number $n$
+\item y needs to be a divider of the second number $t$
+\item y needs to be a prime number. Which is checked by comparing the list of all divisors of y with the list of only 1 and the number itself in it. \\
+\end{enumerate}
+
+
+
 \end{enumerate}
 \clearpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Exercise \homeworkNumber.2 Classes and Inheritance}
+\section*{Exercise \homeworkNumber.2 Lazy Evaluation (Call by need / Infinite List)}
 
+\begin{enumerate}[a)]
+\item \verb|Write a function that returns an infinite list of natural even numbers|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={34-35}, firstnumber=34]{main.hs}
+
+How the title already mentions, Haskell uses lazy evaluation which means that values are only calculated when needed. So when defining an infinite list, Haskell doesn't actually calculate an infinite amount of numbers. Only when working with the list, for example to retrieve some values from it, then those values are calculated.\\
+
+\item \verb|Take a list and return tuples with the result and the result times two.|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={38-39}, firstnumber=38]{main.hs}
+
+Because Haskell uses lazy evaluation, this function works with finite lists just as well as with infinite lists.\\
+
+\item \verb|return elements where n*2 < given Integer|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={42-43}, firstnumber=42]{main.hs}
+
+Note that this implementation only works when using the lists generated from a) and b). If the input list is not ordered in ascending order, it might not return all values that match the constraint.
+
+\end{enumerate}
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Exercise \homeworkNumber.3 Operator Overloading}
+\section*{Exercise \homeworkNumber.3 Pattern Matching and Guards}
+
+\begin{enumerate}
+\item \verb|Three-argument ackermann function|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={46-51}, firstnumber=46]{main.hs}
+
+\item \verb|Ackermann list function|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={54-59}, firstnumber=54]{main.hs}
+
+I am unsure on how to comment on this code. It's a simple function that takes three arguments (or a list) as input and then has different cases that it goes through. Depending on which case (or pattern) matches, it behaves differently.
+\end{enumerate}
 
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Exercise \homeworkNumber.4 Templates}
+\section*{Exercise \homeworkNumber.4 Sorting}
 
-%\lstset{language=C++}
-%\lstinputlisting{q4.cpp}
+\begin{enumerate}
+\item \verb|Return true or false whether the given list is sorted|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={62-65}, firstnumber=62]{main.hs}
+
+Compares the first two items in a list, if sorted recursively call itself with the rest of the list except for the first item. If at any point it is not sorted, it returns false. If it reaches the end (list with one item) it will return true.\\
+
+\item \verb|Mergesort|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={68-87}, firstnumber=68]{main.hs}
+
+On the recursive "way down" we split our list in smaller lists until they are either empty or contain a single element. On the "way up" we then merge those lists together.\\
+
+Since we only merge "sorted" lists, we can skip the merge part if the smallest value in one list is bigger then the biggest value in the other list. If so we can just append the two lists instead of merging. (Line 79-80)
+
+To prevent unnecessary calculations we first check with the help of our sorted function if the given list is already sorted. If not, we continue with merge sort.
+
+\clearpage
+
+\item \verb|Bubblesort|\\
+\lstset{language=Haskell}
+\lstinputlisting[linerange={89-106}, firstnumber=89]{main.hs}
+
+The idea is to iterate over the list and compare the current value with the next one. If not sorted, we swap them. If we have swapped anything in one pass, we have to do it again until we are able to iterate over the list without swapping anything.
+
+The onePass function returns a boolean next to the list in order to determine whether a swap happend or not. The code is very confusing and I was not able to write this entirely by myself without using the help of the internet.
+
+
+\end{enumerate}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Exercise 5 and 6 Tic Tac Toe, The Ultimate Game}
+\section*{Exercise 3.5, Recursion, Map and Fold}
 
+\begin{enumerate}
+\item \verb|filter|
+\lstset{language=Haskell}
+\lstinputlisting[linerange={108-112}, firstnumber=108]{main.hs}
+
+\verb|map|
+\lstset{language=Haskell}
+\lstinputlisting[linerange={114-116}, firstnumber=114]{main.hs}
+
+While we're not allowed to use the in-built filter and map functions for our own implementation, I believe it is still allowed to just look up how those functions are implemented and then implement my own functions exactly the same way.
+
+The Map function uses the given function on the first element of the list and then calls itself again with the rest of the list.
+
+The Filter function checks if the first element returns true with the given function, if yes it adds it to the list, if not, it just continues.
+
+\item \verb|BMI-Lists|
+\lstset{language=Haskell}
+\lstinputlisting[linerange={118-131}, firstnumber=118]{main.hs}
+
+Sadly I did not find a way to use the myfilter function in a meaningful way. Since I already constrain the list when generating it, I don't have to filter it afterwards.
+
+\end{enumerate}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise \homeworkNumber.6,7,8,9 Sorting}
+
+Sadly no crazy tictactoe implementation this time. Actually no implementation at all for those remaining exercises. There is just no time to learn an entire new language concept and language in just a week while also staying up to date in the other lectures... Sorry. (First Haskell lecture was on Friday the 5th and the main part was this last Friday.)
 
 \end{document}
